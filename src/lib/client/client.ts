@@ -8,6 +8,9 @@ const token = window.localStorage.getItem("medusa_auth_token") || ""
 export const sdk = new Medusa({
   baseUrl: backendUrl,
   publishableKey: publishableApiKey,
+  globalHeaders: {
+    "ngrok-skip-browser-warning": "true",
+  },
 })
 
 // useful when you want to call the BE from the console and try things out quickly
@@ -25,6 +28,7 @@ export const importProductsQuery = async (file: File) => {
     headers: {
       authorization: `Bearer ${token}`,
       "x-publishable-api-key": publishableApiKey,
+      "ngrok-skip-browser-warning": "true",
     },
   })
     .then((res) => res.json())
@@ -44,6 +48,7 @@ export const uploadFilesQuery = async (files: any[]) => {
     headers: {
       authorization: `Bearer ${token}`,
       "x-publishable-api-key": publishableApiKey,
+      "ngrok-skip-browser-warning": "true",
     },
   })
     .then((res) => res.json())
@@ -83,6 +88,7 @@ export const fetchQuery = async (
       authorization: `Bearer ${bearer}`,
       "Content-Type": "application/json",
       "x-publishable-api-key": publishableApiKey,
+      "ngrok-skip-browser-warning": "true",
       ...headers,
     },
     body: body ? JSON.stringify(body) : null,
